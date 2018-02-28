@@ -10,14 +10,16 @@ public class SalarySlip {
     private final BigDecimal nationalInsuranceContribution;
     private final BigDecimal taxFreeAllowance;
     private final BigDecimal taxableIncome;
+    private final BigDecimal taxablePayable;
 
-    public SalarySlip(int employeeId, String employeeName, BigDecimal monthlymonthlyGrossSalary, BigDecimal nationalInsuranceContribution, BigDecimal taxFreeAllowance, BigDecimal taxableIncome) {
+    public SalarySlip(int employeeId, String employeeName, BigDecimal monthlymonthlyGrossSalary, BigDecimal nationalInsuranceContribution, BigDecimal taxFreeAllowance, BigDecimal taxableIncome, BigDecimal taxablePayable) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.monthlyGrossSalary = monthlymonthlyGrossSalary;
         this.nationalInsuranceContribution = nationalInsuranceContribution;
         this.taxFreeAllowance = taxFreeAllowance;
         this.taxableIncome = taxableIncome;
+        this.taxablePayable = taxablePayable;
     }
 
     public BigDecimal nationalInsurance() {
@@ -33,7 +35,7 @@ public class SalarySlip {
     }
 
     public BigDecimal taxPayable() {
-        return null;
+        return taxablePayable;
     }
 
     @Override

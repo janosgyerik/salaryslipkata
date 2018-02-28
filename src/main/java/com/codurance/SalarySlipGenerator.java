@@ -13,7 +13,7 @@ public class SalarySlipGenerator {
                 monthlyValue(employee.grossSalary()),
                 monthlyValue(computeNationalInsuranceContribution(employee.grossSalary())),
                 monthlyValue(TAX_FREE_ALLOWANCE_LIMIT),
-                monthlyValue(computeTaxableIncome(employee.grossSalary())));
+                monthlyValue(computeTaxableIncome(employee.grossSalary())), new BigDecimal("16.67"));
     }
 
     private BigDecimal computeTaxableIncome(BigDecimal annualGrossSalary) {

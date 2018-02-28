@@ -18,7 +18,7 @@ public class SalarySlipGeneratorTest {
 
         SalarySlipGenerator generator = new SalarySlipGenerator();
 
-        SalarySlip expectedSalarySlip = new SalarySlip(EMPLOYEE_ID, JOHN_J_DOE, new BigDecimal("416.67"), new BigDecimal("0.00"), new BigDecimal("0.00"), new BigDecimal("0.00"));
+        SalarySlip expectedSalarySlip = new SalarySlip(EMPLOYEE_ID, JOHN_J_DOE, new BigDecimal("416.67"), new BigDecimal("0.00"), new BigDecimal("0.00"), new BigDecimal("0.00"), new BigDecimal("0.00"));
 
         assertThat(generator.generateFor(employee)).isEqualTo(expectedSalarySlip);
     }
