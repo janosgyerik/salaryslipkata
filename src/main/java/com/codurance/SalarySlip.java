@@ -53,4 +53,7 @@ public class SalarySlip {
                 '}';
     }
 
+    public BigDecimal taxableIncome() {
+        throw new sun.reflect.generics.reflectiveObjects.NotImplementedException();
+    }
 }
