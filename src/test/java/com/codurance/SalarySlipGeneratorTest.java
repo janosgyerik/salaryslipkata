@@ -112,6 +112,15 @@ public class SalarySlipGeneratorTest {
         assertThat(salarySlip.taxPayable()).isEqualTo(new BigDecimal("16.67"));
     }
 
+    @Test
+    public void annual_gross_salary_of_11000_should_give_tax_payable_0() {
+        Employee employee = createEmployee("11000.00");
+
+        SalarySlip salarySlip = salarySlipGenerator.generateFor(employee);
+
+        assertThat(salarySlip.taxPayable()).isEqualTo(new BigDecimal("0.00"));
+    }
+
     private Employee createEmployee(String salary) {
         return new Employee(EMPLOYEE_ID, JOHN_J_DOE, new BigDecimal(salary));
     }
