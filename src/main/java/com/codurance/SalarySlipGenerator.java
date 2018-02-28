@@ -17,6 +17,9 @@ public class SalarySlipGenerator {
     }
 
     private BigDecimal computeTaxableIncome(BigDecimal annualGrossSalary) {
+        if (annualGrossSalary.compareTo(TAX_FREE_ALLOWANCE_LIMIT) < 0) {
+            return BigDecimal.ZERO;
+        }
         return annualGrossSalary.subtract(TAX_FREE_ALLOWANCE_LIMIT);
     }
 
