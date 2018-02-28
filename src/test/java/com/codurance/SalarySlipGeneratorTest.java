@@ -19,7 +19,7 @@ public class SalarySlipGeneratorTest {
 
         SalarySlipGenerator generator = new SalarySlipGenerator();
 
-        SalarySlip expectedSalarySlip = new SalarySlip(EMPLOYEE_ID, JOHN_J_DOE, new BigDecimal("416.67"), new BigDecimal("0.00"), new BigDecimal("0.00"));
+        SalarySlip expectedSalarySlip = new SalarySlip(EMPLOYEE_ID, JOHN_J_DOE, new BigDecimal("416.67"), new BigDecimal("0.00"), new BigDecimal("0.00"), new BigDecimal("0.00"));
 
         assertThat(generator.generateFor(employee)).isEqualTo(expectedSalarySlip);
     }
@@ -69,6 +69,17 @@ public class SalarySlipGeneratorTest {
     }
 
     @Test
+    public void annual_gross_salary_of_13000_should_give_tax_free_allowance_916_67() {
+        Employee employee = new Employee(EMPLOYEE_ID, JOHN_J_DOE, new BigDecimal("13000.00"));
+
+        SalarySlipGenerator salarySlipGenerator = new SalarySlipGenerator();
+
+        SalarySlip salarySlip = salarySlipGenerator.generateFor(employee);
+
+        assertThat(salarySlip.taxFreeAllowance()).isEqualTo(new BigDecimal("916.67"));
+    }
+
+    @Test
     public void annual_gross_salary_of_12000_should_give_taxable_income_83_33() {
         Employee employee = new Employee(EMPLOYEE_ID, JOHN_J_DOE, new BigDecimal("12000.00"));
 
@@ -77,5 +88,16 @@ public class SalarySlipGeneratorTest {
         SalarySlip salarySlip = salarySlipGenerator.generateFor(employee);
 
         assertThat(salarySlip.taxableIncome()).isEqualTo(new BigDecimal("83.33"));
+    }
+
+    @Test
+    public void annual_gross_salary_of_13000_should_give_taxable_income_83_33() {
+        Employee employee = new Employee(EMPLOYEE_ID, JOHN_J_DOE, new BigDecimal("13000.00"));
+
+        SalarySlipGenerator salarySlipGenerator = new SalarySlipGenerator();
+
+        SalarySlip salarySlip = salarySlipGenerator.generateFor(employee);
+
+        assertThat(salarySlip.taxableIncome()).isEqualTo(new BigDecimal("166.67"));
     }
 }

@@ -11,7 +11,7 @@ public class SalarySlipGenerator {
         return new SalarySlip(employee.id(), employee.name(),
                 monthlyValue(employee.grossSalary()),
                 monthlyValue(computeNationalInsuranceContribution(employee.grossSalary())),
-                new BigDecimal("916.67"));
+                new BigDecimal("916.67"), new BigDecimal("83.33"));
     }
 
     private BigDecimal monthlyValue(BigDecimal yearlyValue) {

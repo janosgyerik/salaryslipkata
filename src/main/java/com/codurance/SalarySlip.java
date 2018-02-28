@@ -9,13 +9,15 @@ public class SalarySlip {
     private final BigDecimal monthlyGrossSalary;
     private final BigDecimal nationalInsuranceContribution;
     private final BigDecimal taxFreeAllowance;
+    private final BigDecimal taxableIncome;
 
-    public SalarySlip(int employeeId, String employeeName, BigDecimal monthlymonthlyGrossSalary, BigDecimal nationalInsuranceContribution, BigDecimal taxFreeAllowance) {
+    public SalarySlip(int employeeId, String employeeName, BigDecimal monthlymonthlyGrossSalary, BigDecimal nationalInsuranceContribution, BigDecimal taxFreeAllowance, BigDecimal taxableIncome) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.monthlyGrossSalary = monthlymonthlyGrossSalary;
         this.nationalInsuranceContribution = nationalInsuranceContribution;
         this.taxFreeAllowance = taxFreeAllowance;
+        this.taxableIncome = taxableIncome;
     }
 
     public BigDecimal nationalInsurance() {
@@ -24,6 +26,10 @@ public class SalarySlip {
 
     public BigDecimal taxFreeAllowance() {
         return taxFreeAllowance;
+    }
+
+    public BigDecimal taxableIncome() {
+        return taxableIncome;
     }
 
     @Override
@@ -51,9 +57,5 @@ public class SalarySlip {
                 ", monthlyGrossSalary=" + monthlyGrossSalary +
                 ", nationalInsuranceContribution=" + nationalInsuranceContribution +
                 '}';
-    }
-
-    public BigDecimal taxableIncome() {
-        throw new sun.reflect.generics.reflectiveObjects.NotImplementedException();
     }
 }
