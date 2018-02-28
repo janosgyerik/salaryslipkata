@@ -56,4 +56,15 @@ public class SalarySlipGeneratorTest {
 
         assertThat(salarySlip.nationalInsurance()).isEqualTo(new BigDecimal("30.00"));
     }
+
+    @Test
+    public void annual_gross_salary_of_12000_should_give_tax_free_allowance_916_67() {
+        Employee employee = new Employee(EMPLOYEE_ID, JOHN_J_DOE, new BigDecimal("12000.00"));
+
+        SalarySlipGenerator salarySlipGenerator = new SalarySlipGenerator();
+
+        SalarySlip salarySlip = salarySlipGenerator.generateFor(employee);
+
+        assertThat(salarySlip.taxFreeAllowance()).isEqualTo(new BigDecimal("916.67"));
+    }
 }

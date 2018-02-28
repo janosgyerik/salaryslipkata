@@ -47,4 +47,8 @@ public class SalarySlip {
                 ", nationalInsuranceContribution=" + nationalInsuranceContribution +
                 '}';
     }
+
+    public BigDecimal taxFreeAllowance() {
+        return null;
+    }
 }
