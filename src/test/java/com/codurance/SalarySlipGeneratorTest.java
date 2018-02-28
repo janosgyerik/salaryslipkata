@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.is;
 
 public class SalarySlipGeneratorTest {
 
@@ -110,5 +109,16 @@ public class SalarySlipGeneratorTest {
         SalarySlip salarySlip = salarySlipGenerator.generateFor(employee);
 
         assertThat(salarySlip.taxableIncome()).isEqualTo(new BigDecimal("0.00"));
+    }
+
+    @Test
+    public void annual_gross_salary_of_12000_should_give_tax_payable_16_67() {
+        Employee employee = new Employee(EMPLOYEE_ID, JOHN_J_DOE, new BigDecimal("12000.00"));
+
+        SalarySlipGenerator salarySlipGenerator = new SalarySlipGenerator();
+
+        SalarySlip salarySlip = salarySlipGenerator.generateFor(employee);
+
+        assertThat(salarySlip.taxPayable()).isEqualTo(new BigDecimal("16.67"));
     }
 }

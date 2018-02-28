@@ -32,6 +32,10 @@ public class SalarySlip {
         return taxableIncome;
     }
 
+    public BigDecimal taxPayable() {
+        return null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
