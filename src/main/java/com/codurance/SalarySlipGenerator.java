@@ -8,7 +8,10 @@ public class SalarySlipGenerator {
     public static final BigDecimal NIC_MINIMUM_SALARY_TAXABLE = new BigDecimal("8060");
 
     SalarySlip generateFor(Employee employee) {
-        return new SalarySlip(employee.id(), employee.name(), monthlyValue(employee.grossSalary()), monthlyValue(computeNationalInsuranceContribution(employee.grossSalary())));
+        return new SalarySlip(employee.id(), employee.name(),
+                monthlyValue(employee.grossSalary()),
+                monthlyValue(computeNationalInsuranceContribution(employee.grossSalary())),
+                new BigDecimal("916.67"));
     }
 
     private BigDecimal monthlyValue(BigDecimal yearlyValue) {

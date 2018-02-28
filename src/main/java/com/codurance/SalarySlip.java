@@ -1,7 +1,6 @@
 package com.codurance;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Objects;
 
 public class SalarySlip {
@@ -9,16 +8,22 @@ public class SalarySlip {
     private final String employeeName;
     private final BigDecimal monthlyGrossSalary;
     private final BigDecimal nationalInsuranceContribution;
+    private final BigDecimal taxFreeAllowance;
 
-    public SalarySlip(int employeeId, String employeeName, BigDecimal monthlymonthlyGrossSalary, BigDecimal nationalInsuranceContribution) {
+    public SalarySlip(int employeeId, String employeeName, BigDecimal monthlymonthlyGrossSalary, BigDecimal nationalInsuranceContribution, BigDecimal taxFreeAllowance) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.monthlyGrossSalary = monthlymonthlyGrossSalary;
         this.nationalInsuranceContribution = nationalInsuranceContribution;
+        this.taxFreeAllowance = taxFreeAllowance;
     }
 
     public BigDecimal nationalInsurance() {
         return nationalInsuranceContribution;
+    }
+
+    public BigDecimal taxFreeAllowance() {
+        return taxFreeAllowance;
     }
 
     @Override
@@ -48,7 +53,4 @@ public class SalarySlip {
                 '}';
     }
 
-    public BigDecimal taxFreeAllowance() {
-        return null;
-    }
 }
