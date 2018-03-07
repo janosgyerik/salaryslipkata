@@ -11,11 +11,18 @@ public class SalarySlipGenerator {
 
     SalarySlip generateFor(Employee employee) {
         return new SalarySlip(employee.id(), employee.name(),
-                monthlyValue(employee.grossSalary()),
-                monthlyValue(computeNationalInsuranceContribution(employee.grossSalary())),
-                monthlyValue(TAX_FREE_ALLOWANCE_LIMIT),
-                monthlyValue(computeTaxableIncome(employee.grossSalary())),
-                new BigDecimal("16.67"));
+            monthlyValue(employee.grossSalary()),
+            monthlyValue(computeNationalInsuranceContribution(employee.grossSalary())),
+            monthlyValue(TAX_FREE_ALLOWANCE_LIMIT),
+            monthlyValue(computeTaxableIncome(employee.grossSalary())),
+            monthlyValue(computeTaxPayable(employee.grossSalary())));
+    }
+
+    private BigDecimal computeTaxPayable(BigDecimal grossSalary) {
+        if (grossSalary.compareTo(TAX_FREE_ALLOWANCE_LIMIT) <= 0) {
+            return new BigDecimal("0.00");
+        }
+        return grossSalary.subtract(TAX_FREE_ALLOWANCE_LIMIT).multiply(new BigDecimal(0.2));
     }
 
     private BigDecimal computeTaxableIncome(BigDecimal annualGrossSalary) {
@@ -30,10 +37,8 @@ public class SalarySlipGenerator {
     }
 
     private static BigDecimal computeNationalInsuranceContribution(BigDecimal yearlySalary) {
-        if (yearlySalary.compareTo(NIC_MINIMUM_SALARY_TAXABLE) > 0){
-            return yearlySalary.subtract(NIC_MINIMUM_SALARY_TAXABLE)
-                .multiply(new BigDecimal("12"))
-                .divide(new BigDecimal("100"));
+        if (yearlySalary.compareTo(NIC_MINIMUM_SALARY_TAXABLE) > 0) {
+            return yearlySalary.subtract(NIC_MINIMUM_SALARY_TAXABLE).multiply(new BigDecimal(0.12));
         }
         return BigDecimal.ZERO;
     }
