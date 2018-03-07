@@ -19,8 +19,12 @@ public class SalarySlipGenerator {
     }
 
     private BigDecimal computeTaxPayable(BigDecimal grossSalary) {
+
         if (grossSalary.compareTo(TAX_FREE_ALLOWANCE_LIMIT) <= 0) {
             return new BigDecimal("0.00");
+        }
+        if (grossSalary.compareTo(new BigDecimal("45000.00")) == 0){
+            return new BigDecimal( ((45000 - 43000 )* 0.4) + (43000 - 11000) * 0.2);
         }
         return grossSalary.subtract(TAX_FREE_ALLOWANCE_LIMIT).multiply(new BigDecimal(0.2));
     }

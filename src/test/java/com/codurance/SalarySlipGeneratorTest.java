@@ -136,7 +136,7 @@ public class SalarySlipGeneratorTest {
 
         SalarySlip salarySlip = salarySlipGenerator.generateFor(employee);
 
-        assertThat(salarySlip.taxPayable()).isEqualTo(new BigDecimal("600"));
+        assertThat(salarySlip.taxPayable()).isEqualTo(new BigDecimal("600.00"));
     }
 
     private Employee createEmployee(String salary) {
